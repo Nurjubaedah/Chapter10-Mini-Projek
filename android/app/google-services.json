@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "655353746643",
+    "project_id": "mini-project-app-1a1f3",
+    "storage_bucket": "mini-project-app-1a1f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:655353746643:android:f081758c902f6b5ffcb026",
+        "android_client_info": {
+          "package_name": "com.example.mini_project_application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADBKQEgXNBZzNp0EAJXbLCHLrNMCvQggM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

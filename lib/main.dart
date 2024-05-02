@@ -18,35 +18,18 @@ void main() async{
       projectId: "mini-project-app-1a1f3",
       ),
   );
-  await Firebase.initializeApp();
-      runApp(MyAPP()as Widget);
+  runApp(
+    GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "Application",
+      initialRoute: Routes.SPLASHSCREEN,
+      getPages: AppPages.routes,
+    ),
+  );
+      
 }
 
-class MyAPP extends StatelessWidget {
-  final AuthC = Get.put(LoginController(), permanent: true);
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-        stream: AuthC.streamAuthStatus,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.active) {
-            print(snapshot);
-            return GetMaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: "Application",
-              initialRoute:
-                   snapshot.data != null && snapshot.data!.emailVerified == true
-                      ? Routes.HOME
-                      : Routes.LOGIN,
-              getPages: AppPages.routes,
-              theme: ThemeData(
-                primarySwatch: Colors.indigo,
-              ),
-            );
-          }
-          return SplashscreenView();
-        });
-  }
   
-}
+
+
 

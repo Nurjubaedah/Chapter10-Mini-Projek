@@ -35,7 +35,7 @@ class HomeView extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -46,18 +46,23 @@ class HomeView extends StatelessWidget {
                           'Hello, ${userData['name']}',
                           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        Icon(Icons.account_circle),
+                        Obx(() => CircleAvatar(
+                          radius: 26,
+                          backgroundImage: controller.profilePhotoUrl.value.isNotEmpty
+                              ? NetworkImage(controller.profilePhotoUrl.value)
+                              : AssetImage('assets/images/default_profile_image.png') as ImageProvider,
+                        )),
                       ],
                     ),
-                    SizedBox(height: 4), // Jarak antara teks "Hello" dan "How your day going"
+                    SizedBox(height: 4),
                     Text('How\'s your day going'),
-                    SizedBox(height: 8), // Jarak antara teks dan garis
-                    Divider(height: 1, color: Colors.black38), // Garis pemisah
-                    SizedBox(height: 8), // Jarak antara garis dan teks berikutnya
+                    SizedBox(height: 8),
+                    Divider(height: 1, color: Colors.black38),
+                    SizedBox(height: 8),
 
                     Text('My Phone Number: ${userData['phoneNumber']}'),
                     Text('My Address: ${userData['address']}'),
-                    SizedBox(height: 20), // Jarak antara tombol dengan teks berikutnya
+                    SizedBox(height: 50),
                     Center(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -70,7 +75,6 @@ class HomeView extends StatelessWidget {
                         onPressed: () async {
                           final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
                           if (pickedFile != null) {
-                            // Jika pengguna memilih foto, upload foto ke Cloud Firestore
                             controller.uploadPhoto(pickedFile.path);
                           }
                         },

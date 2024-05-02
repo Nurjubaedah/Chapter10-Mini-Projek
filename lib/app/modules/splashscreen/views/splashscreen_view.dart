@@ -8,7 +8,7 @@ class SplashscreenView extends GetView<SplashscreenController> {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2), (() {
+    Future.delayed(const Duration(seconds: 5), (() {
       Get.offAllNamed(Routes.LOGIN); 
     }));
     return Scaffold(
@@ -19,11 +19,8 @@ class SplashscreenView extends GetView<SplashscreenController> {
             'assets/images/bgsplash.png', 
             fit: BoxFit.cover,
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 91.83,
-            bottom: 273.92,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 100, 0, 200), // Atur jarak antara gambar dan teks menggunakan padding
             child: Center(
               child: Image.asset(
                 'assets/images/bunga-ungu.png',
@@ -32,10 +29,8 @@ class SplashscreenView extends GetView<SplashscreenController> {
               ),
             ),
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 385,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 200, 0, 90), // Atur padding horizontal untuk teks
             child: Center(
               child: RichText(
                 textAlign: TextAlign.center,

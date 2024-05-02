@@ -16,42 +16,41 @@ class LoginView extends GetView<LoginController> {
             'assets/images/Bg-LoginRegister.png',
             fit: BoxFit.cover,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 50.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 221,
-                  width: 221,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/login-logo.png'),
-                      scale: 1.70,
-                      alignment: Alignment.topCenter,
+          SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 100.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    width: MediaQuery.of(context).size.height * 0.3,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/login-logo.png'),
+                        scale: 1.70,
+                        alignment: Alignment.topCenter,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'Welcome to Azalea',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                  SizedBox(height: 20),
+                  Text(
+                    'Welcome to Azalea',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
+                  SizedBox(height: 20),
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 20),
                       Text(
                         'Username',
                         style: TextStyle(fontSize: 16),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8),
                       Container(
                         padding: EdgeInsets.all(10),
                         child: TextField(
@@ -64,12 +63,14 @@ class LoginView extends GetView<LoginController> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 16),
                       Text(
                         'Password',
                         style: TextStyle(fontSize: 16),
                       ),
+                      SizedBox(height: 8),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
+                        padding: EdgeInsets.all(10),
                         child: TextField(
                           controller: controller.passwordController,
                           obscureText: true,
@@ -81,40 +82,39 @@ class LoginView extends GetView<LoginController> {
                           ),
                         ),
                       ),
-                      Center(
-                        child: Container(
-                          height: 40,
-                          padding: const EdgeInsets.fromLTRB(10, 0, 16, 10),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor: Color.fromARGB(255, 190, 66, 149),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
+                      SizedBox(height: 20),
+                      Container(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(vertical: 12), // Padding tombol login
+                            foregroundColor: Colors.white,
+                            backgroundColor: Color.fromARGB(255, 190, 66, 149),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
                             ),
-                            child: const Text('Login'),
-                            onPressed: () {
-                              if (controller.usernameController.text.isEmpty ||
-                                  controller.passwordController.text.isEmpty) {
-                                Get.snackbar(
-                                  'Error',
-                                  'Username or password cannot be empty',
-                                  snackPosition: SnackPosition.BOTTOM,
-                                  duration: Duration(seconds: 2),
-                                  margin: EdgeInsets.all(12),
-                                );
-                              } else {
-                                controller.login(
-                                  controller.usernameController.text,
-                                  controller.passwordController.text,
-                                );
-                              }
-                            },
                           ),
+                          onPressed: () {
+                            if (controller.usernameController.text.isEmpty ||
+                                controller.passwordController.text.isEmpty) {
+                              Get.snackbar(
+                                'Error',
+                                'Username or password cannot be empty',
+                                snackPosition: SnackPosition.BOTTOM,
+                                duration: Duration(seconds: 2),
+                                margin: EdgeInsets.all(12),
+                              );
+                            } else {
+                              controller.login(
+                                controller.usernameController.text,
+                                controller.passwordController.text,
+                              );
+                            }
+                          },
+                          child: const Text('Login'),
                         ),
                       ),
-                      const SizedBox(height: 5),
+                      SizedBox(height: 5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -138,8 +138,8 @@ class LoginView extends GetView<LoginController> {
                       )
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
